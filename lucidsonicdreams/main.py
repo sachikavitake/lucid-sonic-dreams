@@ -631,7 +631,7 @@ class LucidSonicDream:
                   file_name: str, 
                   output_audio: str = None,
                   fps: int = 30, 
-                  resolution: str = '512-512', 
+                  size: str = '512-512', 
                   start: float = 0, 
                   duration: float = None, 
                   save_frames: bool = False,
@@ -684,7 +684,7 @@ class LucidSonicDream:
     self.file_name = file_name if file_name[-4:] == '.mp4' \
                      else file_name + '.mp4'
     
-    resolution = self.size_range(resolution)
+    resolution = self.size_range(size)
     self.resolution = resolution
     self.batch_size = batch_size
     self.speed_fpm = speed_fpm
