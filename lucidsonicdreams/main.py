@@ -682,6 +682,8 @@ class LucidSonicDream:
 
     self.file_name = file_name if file_name[-4:] == '.mp4' \
                      else file_name + '.mp4'
+    
+    resolution = size_range(resolution)
     self.resolution = resolution
     self.batch_size = batch_size
     self.speed_fpm = speed_fpm
