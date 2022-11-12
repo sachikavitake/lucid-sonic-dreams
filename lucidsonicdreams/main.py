@@ -7,6 +7,7 @@ import inspect
 import numpy as np
 import random
 from scipy.stats import truncnorm
+from typing import List, Optional
 
 import torch
 import PIL
@@ -622,7 +623,7 @@ class LucidSonicDream:
         del image_batch
         del noise_batch
         
-  def size_range(s: str) -> List[int]:
+  def size_range(self, s: str) -> List[int]:
     '''Accept a range 'a-c' and return as a list of 2 ints.'''
     return [int(v) for v in s.split('-')][::-1]      
 
@@ -683,7 +684,7 @@ class LucidSonicDream:
     self.file_name = file_name if file_name[-4:] == '.mp4' \
                      else file_name + '.mp4'
     
-    resolution = size_range(resolution)
+    resolution = self.size_range(resolution)
     self.resolution = resolution
     self.batch_size = batch_size
     self.speed_fpm = speed_fpm
