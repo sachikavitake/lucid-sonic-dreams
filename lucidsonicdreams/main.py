@@ -621,13 +621,16 @@ class LucidSonicDream:
         
         del image_batch
         del noise_batch
-
+        
+  def size_range(s: str) -> List[int]:
+    '''Accept a range 'a-c' and return as a list of 2 ints.'''
+    return [int(v) for v in s.split('-')][::-1]      
 
   def hallucinate(self,
                   file_name: str, 
                   output_audio: str = None,
                   fps: int = 30, 
-                  resolution: int = None, 
+                  resolution: str = '512-512', 
                   start: float = 0, 
                   duration: float = None, 
                   save_frames: bool = False,
