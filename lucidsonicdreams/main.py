@@ -42,17 +42,17 @@ def import_stylegan_torch():
     import legacy
 
 
-# def import_stylegan_tf():
-#     print("Cloning old, tensorflow stylegan...")
-#     if not os.path.exists('stylegan2_tf'):
-#         pygit2.clone_repository('https://github.com/NVlabs/stylegan2-ada.git',
-#                               'stylegan2_tf')
+def import_stylegan_tf():
+    print("Cloning old, tensorflow stylegan...")
+    if not os.path.exists('stylegan2_tf'):
+        pygit2.clone_repository('https://github.com/NVlabs/stylegan2-ada.git',
+                              'stylegan2_tf')
 
-#     #StyleGAN2 Imports
-#     sys.path.append("stylegan2_tf")
-#     import dnnlib as dnnlib
-#     from dnnlib.tflib.tfutil import convert_images_to_uint8 as convert_images_to_uint8
-#     init_tf()
+    #StyleGAN2 Imports
+    sys.path.append("stylegan2_tf")
+    import dnnlib as dnnlib
+    from dnnlib.tflib.tfutil import convert_images_to_uint8 as convert_images_to_uint8
+    init_tf()
 
 
 def show_styles():
@@ -182,7 +182,7 @@ class LucidSonicDream:
         print(f'Loading networks from {weights_file}...')
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         with self.dnnlib.util.open_url(weights_file) as f:
-            self.Gs = self.legacy.load_network_pkl(f, custom = custom, **G_kwargs)['G_ema'].to(device) # type: ignore
+            self.Gs = self.legacy.load_network_pkl(f)['G_ema'].to(device) # type: ignore
     
     # Auto assign num_possible_classes attribute
     try:
