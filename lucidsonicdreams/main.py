@@ -609,6 +609,7 @@ class LucidSonicDream:
 
 #             # If resolution is provided, resize
 #             if resolution:
+            print(resolution)
             final_image = final_image.resize((resolution[0], resolution[1]))
 
             # Save. Include leading zeros in file name to keep alphabetical order
