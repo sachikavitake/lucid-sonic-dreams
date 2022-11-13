@@ -1,5 +1,6 @@
 import sys
 import os
+import dnnlib
 import shutil
 import pickle 
 from tqdm import tqdm
