@@ -607,9 +607,9 @@ class LucidSonicDream:
 
             final_image = Image.fromarray(array, 'RGB')
 
-            # If resolution is provided, resize
-            if resolution:
-                final_image = final_image.resize((resolution, resolution))
+#             # If resolution is provided, resize
+#             if resolution:
+            final_image = final_image.resize((resolution[0], resolution[1]))
 
             # Save. Include leading zeros in file name to keep alphabetical order
             #max_frame_index = num_frame_batches * batch_size + batch_size
