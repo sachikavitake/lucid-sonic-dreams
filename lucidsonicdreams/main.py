@@ -551,7 +551,8 @@ class LucidSonicDream:
     '''Generate GAN output for each frame of video'''
 
     file_name = self.file_name
-    resolution = self.resolution
+    size_x = self.size_x
+    size_y = self.size_y
     batch_size = self.batch_size
     num_frame_batches = int(len(self.noise) / batch_size)
     if self.use_tf:
@@ -609,8 +610,7 @@ class LucidSonicDream:
 
 #             # If resolution is provided, resize
 #             if resolution:
-            print(resolution)
-            final_image = final_image.resize((resolution[0], resolution[1]))
+            final_image = final_image.resize((size_x, size_y))
 
             # Save. Include leading zeros in file name to keep alphabetical order
             #max_frame_index = num_frame_batches * batch_size + batch_size
@@ -624,15 +624,12 @@ class LucidSonicDream:
         del image_batch
         del noise_batch
         
-  def size_range(self, s: str) -> List[int]:
-    '''Accept a range 'a-c' and return as a list of 2 ints.'''
-    return [int(v) for v in s.split('-')][::-1]
-        
   def hallucinate(self,
                   file_name: str, 
                   output_audio: str = None,
                   fps: int = 30, 
-                  size: str = '512-512', 
+                  size_x: int = 512,
+                  size_y: int = 512,
                   start: float = 0, 
                   duration: float = None, 
                   save_frames: bool = False,
@@ -684,8 +681,8 @@ class LucidSonicDream:
 
     self.file_name = file_name if file_name[-4:] == '.mp4' \
                      else file_name + '.mp4'
-    resolution = self.size_range(size)
-    self.resolution = resolution
+    self.size_x = size_x
+    self.size_y = size_y
     self.batch_size = batch_size
     self.speed_fpm = speed_fpm
     self.pulse_react = pulse_react
