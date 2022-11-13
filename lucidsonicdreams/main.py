@@ -167,6 +167,11 @@ class LucidSonicDream:
 
     else:
       weights_file = style
+    
+    G_kwargs = dnnlib.EasyDict()
+    size = [self.size_x, self.size_y]
+    G_kwargs.size = size
+    custom = True
 
     # load generator
     if self.use_tf:
@@ -177,7 +182,7 @@ class LucidSonicDream:
         print(f'Loading networks from {weights_file}...')
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         with self.dnnlib.util.open_url(weights_file) as f:
-            self.Gs = self.legacy.load_network_pkl(f)['G_ema'].to(device) # type: ignore
+            self.Gs = self.legacy.load_network_pkl(f, custom = custom, **G_kwargs)['G_ema'].to(device) # type: ignore
     
     # Auto assign num_possible_classes attribute
     try:
@@ -609,8 +614,8 @@ class LucidSonicDream:
             final_image = Image.fromarray(array, 'RGB')
 
 #             # If resolution is provided, resize
-#             if resolution:
-            final_image = final_image.resize((size_x, size_y))
+            if resolution:
+                final_image = final_image.resize((resolution, resolution))
 
             # Save. Include leading zeros in file name to keep alphabetical order
             #max_frame_index = num_frame_batches * batch_size + batch_size
@@ -628,6 +633,7 @@ class LucidSonicDream:
                   file_name: str, 
                   output_audio: str = None,
                   fps: int = 30, 
+                  resolution: int = None,
                   size_x: int = 512,
                   size_y: int = 512,
                   start: float = 0, 
@@ -683,6 +689,7 @@ class LucidSonicDream:
                      else file_name + '.mp4'
     self.size_x = size_x
     self.size_y = size_y
+    self.resolution = resolution
     self.batch_size = batch_size
     self.speed_fpm = speed_fpm
     self.pulse_react = pulse_react
