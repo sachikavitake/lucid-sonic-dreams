@@ -8,7 +8,6 @@ import numpy as np
 import random
 from scipy.stats import truncnorm
 from typing import List, Optional
-import dnnlib as dnnlib
 
 import torch
 import PIL
@@ -39,6 +38,7 @@ def import_stylegan_torch():
                               'stylegan2')
     # StyleGan2 imports
     sys.path.append("stylegan2")
+    import dnnlib
     import legacy
 
 
@@ -50,6 +50,7 @@ def import_stylegan_tf():
 
     #StyleGAN2 Imports
     sys.path.append("stylegan2_tf")
+    import dnnlib as dnnlib
     from dnnlib.tflib.tfutil import convert_images_to_uint8 as convert_images_to_uint8
     init_tf()
 
@@ -166,7 +167,7 @@ class LucidSonicDream:
 
     else:
       weights_file = style
-    
+    import dnnlib as dnnlib
     G_kwargs = dnnlib.EasyDict()
     size = [self.size_x, self.size_y]
     G_kwargs.size = size
