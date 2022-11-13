@@ -1,6 +1,5 @@
 import sys
 import os
-import dnnlib
 import shutil
 import pickle 
 from tqdm import tqdm
@@ -9,6 +8,7 @@ import numpy as np
 import random
 from scipy.stats import truncnorm
 from typing import List, Optional
+import dnnlib as dnnlib
 
 import torch
 import PIL
@@ -40,7 +40,6 @@ def import_stylegan_torch():
     # StyleGan2 imports
     sys.path.append("stylegan2")
     import legacy
-    import dnnlib
 
 
 def import_stylegan_tf():
@@ -51,7 +50,6 @@ def import_stylegan_tf():
 
     #StyleGAN2 Imports
     sys.path.append("stylegan2_tf")
-    import dnnlib as dnnlib
     from dnnlib.tflib.tfutil import convert_images_to_uint8 as convert_images_to_uint8
     init_tf()
 
