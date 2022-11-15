@@ -556,6 +556,7 @@ class LucidSonicDream:
     '''Generate GAN output for each frame of video'''
 
     file_name = self.file_name
+    resolution = self.resolution
     size_x = self.size_x
     size_y = self.size_y
     batch_size = self.batch_size
