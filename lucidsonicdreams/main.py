@@ -34,8 +34,8 @@ all_frames = []
 def import_stylegan_torch():
     # Clone Official StyleGAN2-ADA-pytorch Repository
     if not os.path.exists('stylegan2'):
-        pygit2.clone_repository('https://github.com/dvschultz/stylegan2-ada-pytorch',
-                              'stylegan2')
+        pygit2.clone_repository('https://github.com/dvschultz/stylegan2-ada-pytorch.git',
+                              'stylegan2py')
     # StyleGan2 imports
     sys.path.append("stylegan2")
     import dnnlib
