@@ -169,7 +169,9 @@ class LucidSonicDream:
       weights_file = style
     import dnnlib as dnnlib
     G_kwargs = dnnlib.EasyDict()
-    size = [self.size_x, self.size_y]
+    size_x = self.size_x
+    size_y = self.size_y
+    size = [size_x, size_y]
     G_kwargs.size = size
     custom = True
 
