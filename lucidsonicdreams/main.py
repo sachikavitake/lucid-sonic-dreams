@@ -171,8 +171,10 @@ class LucidSonicDream:
     G_kwargs = dnnlib.EasyDict()
     size_x = self.size_x
     size_y = self.size_y
+    scale_type = self.scale_type
     size = [size_x, size_y]
     G_kwargs.size = size
+    G_kwargs.scale_type = scale_type
     custom = True
 
     # load generator
@@ -693,6 +695,7 @@ class LucidSonicDream:
                      else file_name + '.mp4'
     self.size_x = size_x
     self.size_y = size_y
+    self.scale_type = scale_type
     self.resolution = resolution
     self.batch_size = batch_size
     self.speed_fpm = speed_fpm
