@@ -175,7 +175,10 @@ class LucidSonicDream:
     size = [size_x, size_y]
     G_kwargs.size = size
     G_kwargs.scale_type = scale_type
-    custom = True
+    if size_x == size_y:
+        custom = False
+    else:
+        custom = True
 
     # load generator
     if self.use_tf:
