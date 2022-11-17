@@ -635,13 +635,13 @@ class LucidSonicDream:
         del noise_batch
         
   def hallucinate(self,
-                  file_name: str, 
+                  file_name: str,
+                  scale_type = Optional[str],
                   output_audio: str = None,
                   fps: int = 30, 
                   resolution: int = None,
                   size_x: int = 512,
                   size_y: int = 512,
-                  scale_type: Optional[str],
                   start: float = 0, 
                   duration: float = None, 
                   save_frames: bool = False,
