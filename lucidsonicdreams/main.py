@@ -182,7 +182,7 @@ class LucidSonicDream:
         print(f'Loading networks from {weights_file}...')
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         with self.dnnlib.util.open_url(weights_file) as f:
-            self.Gs = self.legacy.load_network_pkl(f)['G_ema'].to(device) # type: ignore
+            self.Gs = self.legacy.load_network_pkl(f, custom = custom, **G_kwargs)['G_ema'].to(device) # type: ignore
     
     # Auto assign num_possible_classes attribute
     try:
