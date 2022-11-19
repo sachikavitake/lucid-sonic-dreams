@@ -578,10 +578,10 @@ class LucidSonicDream:
 
     # Set-up temporary frame directory
     # Fixme: Save images to RAM
-    #self.frames_dir = file_name.split('.mp4')[0] + '_frames'
-    #if os.path.exists(self.frames_dir):
-    #    shutil.rmtree(self.frames_dir)
-    #os.makedirs(self.frames_dir)
+    self.frames_dir = file_name.split('.mp4')[0] + '_frames'
+    if os.path.exists(self.frames_dir):
+       shutil.rmtree(self.frames_dir)
+    os.makedirs(self.frames_dir)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -626,10 +626,10 @@ class LucidSonicDream:
                 final_image = final_image.resize((resolution, resolution))
 
             # Save. Include leading zeros in file name to keep alphabetical order
-            #max_frame_index = num_frame_batches * batch_size + batch_size
-            #file_name = str(image_index)\
-            #        .zfill(len(str(max_frame_index)))
-            #final_image.save(os.path.join(self.frames_dir, file_name + '.jpg'), quality=95) #, subsample=0, quality=95)
+            max_frame_index = num_frame_batches * batch_size + batch_size
+            file_name = str(image_index)\
+                   .zfill(len(str(max_frame_index)))
+            final_image.save(os.path.join(self.frames_dir, file_name + '.jpg'), quality=95) #, subsample=0, quality=95)
             
             # Dirty global varible hacks :)
             all_frames.append(final_image)
@@ -647,7 +647,7 @@ class LucidSonicDream:
                   size_y: int = 512,
                   start: float = 0, 
                   duration: float = None, 
-                  save_frames: bool = False,
+                  save_frames: bool = True,
                   batch_size: int = 1,
                   speed_fpm: int = 12,
                   pulse_percussive: bool = True,
@@ -798,8 +798,8 @@ class LucidSonicDream:
     os.remove('tmp.mp4')
 
     # By default, delete temporary frames directory
-    #if not save_frames: 
-    # shutil.rmtree(self.frames_dir)
+    if not save_frames: 
+        shutil.rmtree(self.frames_dir)
 
 
 class EffectsGenerator:
