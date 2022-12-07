@@ -10,8 +10,9 @@ from scipy.stats import truncnorm
 from typing import List, Optional
 
 import torch
-import PIL
-from PIL import Image, ImageEnhance
+# import PIL
+# from PIL import Image, ImageEnhance
+import cv2
 import skimage.exposure
 import librosa
 import soundfile
@@ -563,7 +564,14 @@ class LucidSonicDream:
     '''Generate GAN output for each frame of video'''
 
     file_name = self.file_name
-    resolution = self.resolution
+    # resolution = self.resolution
+    resolution = (
+        (self.resolution, self.resolution)
+        if self.resolution
+        else (self.Gs.img_resolution, self.Gs.img_resolution)
+    )
+    video_codec = cv2.VideoWriter_fourcc(*"mp4v")
+    video_out = cv2.VideoWriter("cv2_video.mp4", video_codec, self.fps, resolution)
     size_x = self.size_x
     size_y = self.size_y
     batch_size = self.batch_size
@@ -619,11 +627,17 @@ class LucidSonicDream:
                 array = effect.apply_effect(array = array, 
                                             index = image_index)
 
-            final_image = Image.fromarray(array, 'RGB')
+            # final_image = Image.fromarray(array, 'RGB')
 
 #             # If resolution is provided, resize
             if resolution:
-                final_image = final_image.resize((resolution, resolution))
+              final_image = cv2.resize(array,resolution,cv2.INTER_CUBIC)
+            else:
+              final_image = array[:,:,::-1]
+
+            video_out.write(final_image)
+    video_out.release()
+                # final_image = final_image.resize((resolution, resolution))
 
             # Save. Include leading zeros in file name to keep alphabetical order
 #             max_frame_index = num_frame_batches * batch_size + batch_size
@@ -798,8 +812,8 @@ class LucidSonicDream:
     os.remove('tmp.mp4')
 
     # By default, delete temporary frames directory
-    if not save_frames: 
-        shutil.rmtree(self.frames_dir)
+    # if not save_frames: 
+    #     shutil.rmtree(self.frames_dir)
 
 
 class EffectsGenerator:
