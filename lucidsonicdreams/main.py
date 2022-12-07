@@ -568,7 +568,7 @@ class LucidSonicDream:
     resolution = (
         (self.resolution, self.resolution)
         if self.resolution
-        else None
+        else (self.Gs.img_resolution, self.Gs.img_resolution)
     )
     video_codec = cv2.VideoWriter_fourcc(*"mp4v")
     video_out = cv2.VideoWriter("cv2_video.mp4", video_codec, self.fps, resolution)
