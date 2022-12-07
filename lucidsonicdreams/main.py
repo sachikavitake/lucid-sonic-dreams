@@ -646,10 +646,10 @@ class LucidSonicDream:
 #             final_image.save(os.path.join(self.frames_dir, file_name + '.jpg'), quality=95) #, subsample=0, quality=95)
             
             # Dirty global varible hacks :)
-            all_frames.append(final_image)
+            #all_frames.append(final_image)
         
-        del image_batch
-        del noise_batch
+        #del image_batch
+        #del noise_batch
         
   def hallucinate(self,
                   file_name: str,
