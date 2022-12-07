@@ -10,8 +10,8 @@ from scipy.stats import truncnorm
 from typing import List, Optional
 
 import torch
-import PIL
-from PIL import Image, ImageEnhance
+# import PIL
+# from PIL import Image, ImageEnhance
 import cv2
 import skimage.exposure
 import librosa
@@ -629,12 +629,12 @@ class LucidSonicDream:
 
             # final_image = Image.fromarray(array, 'RGB')
 
-            # If resolution is provided, resize
+#             # If resolution is provided, resize
             if resolution:
               final_image = cv2.resize(array,resolution,cv2.INTER_CUBIC)
             else:
               final_image = array[:,:,::-1]
-            
+
             video_out.write(final_image)
     video_out.release()
                 # final_image = final_image.resize((resolution, resolution))
