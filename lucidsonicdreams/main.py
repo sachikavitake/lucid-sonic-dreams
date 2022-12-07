@@ -10,8 +10,8 @@ from scipy.stats import truncnorm
 from typing import List, Optional
 
 import torch
-# import PIL
-# from PIL import Image, ImageEnhance
+import PIL
+from PIL import Image, ImageEnhance
 import cv2
 import skimage.exposure
 import librosa
