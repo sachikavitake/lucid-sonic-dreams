@@ -629,11 +629,11 @@ class LucidSonicDream:
 
             # final_image = Image.fromarray(array, 'RGB')
 
-#             # If resolution is provided, resize
-#             if resolution:
-#               final_image = cv2.resize(array,resolution,cv2.INTER_CUBIC)
-#             else:
-            final_image = array[:,:,::-1]
+            # If resolution is provided, resize
+            if resolution:
+              final_image = cv2.resize(array,resolution,cv2.INTER_CUBIC)
+            else:
+              final_image = array[:,:,::-1]
             
             video_out.write(final_image)
     video_out.release()
