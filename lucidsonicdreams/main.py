@@ -801,7 +801,7 @@ class LucidSonicDream:
 
     # Mix audio & video
     audio = mpy.AudioFileClip('tmp.wav', fps = self.sr*2)
-    video = mpy.VideoFileClip('tmp.mp4')
+    video = mpy.VideoFileClip('cv2_video.mp4')
     #video = mpy.ImageSequenceClip(all_frames, fps=self.sr/self.frame_duration)
    
     video = video.set_audio(audio)
@@ -809,7 +809,7 @@ class LucidSonicDream:
 
     # Delete temporary audio file
     os.remove('tmp.wav')
-    os.remove('tmp.mp4')
+    os.remove('cv2_video.mp4')
 
     # By default, delete temporary frames directory
     # if not save_frames: 
