@@ -565,13 +565,13 @@ class LucidSonicDream:
 
     file_name = self.file_name
     # resolution = self.resolution
-#     resolution = (
-#         (self.resolution, self.resolution)
-#         if self.resolution
-#         else (self.size_x, self.size_y)
-#     )
+    resolution = (
+        (self.resolution, self.resolution)
+        if self.resolution
+        else (self.size_x, self.size_y)
+    )
     video_codec = cv2.VideoWriter_fourcc(*"mp4v")
-    video_out = cv2.VideoWriter("cv2_video.mp4", video_codec, self.fps)#, resolution)
+    video_out = cv2.VideoWriter("cv2_video.mp4", video_codec, self.fps, resolution)
     size_x = self.size_x
     size_y = self.size_y
     batch_size = self.batch_size
