@@ -627,13 +627,13 @@ class LucidSonicDream:
                 array = effect.apply_effect(array = array, 
                                             index = image_index)
 
-            final_image = Image.fromarray(array, 'RGB')
-            img = cv2.imread(final_image)
+            #final_image = Image.fromarray(array, 'RGB')
+            #img = cv2.imread(final_image)
             # If resolution is provided, resize
             #if resolution:
             #  final_image = cv2.resize(array,resolution,cv2.INTER_LANCZOS4)
             #else:
-            #  final_image = array[:,:,::-1]
+            final_image = array[:, :, :3]
 
             video_out.write(img)
     video_out.release()
