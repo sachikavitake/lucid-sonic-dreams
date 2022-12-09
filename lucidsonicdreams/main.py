@@ -621,7 +621,6 @@ class LucidSonicDream:
             if not self.use_tf:
                 image = (image.permute(1, 2, 0) * 127.5 + 128).clamp(0, 255).to(torch.uint8).squeeze(0)
             array = np.array(image)
-            print(array.size)
 
             # Apply efects
             for effect in self.custom_effects:
@@ -629,14 +628,14 @@ class LucidSonicDream:
                                             index = image_index)
 
             final_image = Image.fromarray(array, 'RGB')
-            print(final_image.size)
+            img = cv2.imread(final_image)
             # If resolution is provided, resize
             #if resolution:
             #  final_image = cv2.resize(array,resolution,cv2.INTER_LANCZOS4)
             #else:
             #  final_image = array[:,:,::-1]
 
-            video_out.write(array)
+            video_out.write(img)
     video_out.release()
                 # final_image = final_image.resize((resolution, resolution))
 
