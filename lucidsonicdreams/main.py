@@ -634,7 +634,7 @@ class LucidSonicDream:
             #  final_image = cv2.resize(array,resolution,cv2.INTER_LANCZOS4)
             #else:
             image = final_image.convert("RGB")
-            image = np.asarray(image, dtype=np.uint8) / 255
+            image = np.asarray(image, dtype=np.uint8)
             image = image[:, :, :3]
 
             video_out.write(image)
