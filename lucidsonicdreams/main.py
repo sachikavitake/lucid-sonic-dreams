@@ -635,7 +635,7 @@ class LucidSonicDream:
             #else:
             final_image = array[:, :, :3]
 
-            video_out.write(img)
+            video_out.write(final_image)
     video_out.release()
                 # final_image = final_image.resize((resolution, resolution))
 
