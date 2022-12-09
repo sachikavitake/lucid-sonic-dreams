@@ -8,6 +8,7 @@ import numpy as np
 import random
 from scipy.stats import truncnorm
 from typing import List, Optional
+from IPython.display import display
 
 import torch
 import PIL
