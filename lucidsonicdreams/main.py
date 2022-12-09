@@ -621,6 +621,7 @@ class LucidSonicDream:
             if not self.use_tf:
                 image = (image.permute(1, 2, 0) * 127.5 + 128).clamp(0, 255).to(torch.uint8).squeeze(0)
             array = np.array(image)
+            print(array.size)
 
             # Apply efects
             for effect in self.custom_effects:
