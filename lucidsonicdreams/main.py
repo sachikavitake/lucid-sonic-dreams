@@ -805,7 +805,6 @@ class LucidSonicDream:
 
     # Mix audio & video
     audio = mpy.AudioFileClip('tmp.wav', fps = self.sr*2)
-    ipython_display('cv2_video.mp4')
     video = mpy.VideoFileClip('cv2_video.mp4')
     
     #video = mpy.ImageSequenceClip(all_frames, fps=self.sr/self.frame_duration)
