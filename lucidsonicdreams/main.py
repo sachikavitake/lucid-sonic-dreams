@@ -639,7 +639,7 @@ class LucidSonicDream:
             #image = np.asarray(image, dtype=np.uint8)
             #image = image[:, :, :3]
 
-            video_out.write(image)
+            video_out.write(final_image)
     video_out.release()
                 # final_image = final_image.resize((resolution, resolution))
 
