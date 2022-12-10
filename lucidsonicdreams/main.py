@@ -634,7 +634,7 @@ class LucidSonicDream:
             if resolution:
                 final_image = cv2.resize(array,resolution,cv2.INTER_LANCZOS4)
             else:
-                final_image = array[...,:3]
+                final_image = array[:,:,::-1]
             #image = final_image.convert("RGB")
             #image = np.asarray(image, dtype=np.uint8)
             #image = image[:, :, :3]
